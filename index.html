@@ -82,12 +82,12 @@ redo:`<path d="M15 14l5-5-5-5M20 9H9.5a5.5 5.5 0 0 0 0 11H13" ${S} stroke-width=
 const svg=n=>`<svg viewBox="0 0 24 24">${IC[n]}</svg>`;
 const NAMES={select:'Select',eraser:'Eraser',line:'Line',rect:'Rectangle',circle:'Circle',push:'Push/Pull',move:'Move',rotate:'Rotate',tape:'Tape',text:'Text',paint:'Paint',orbit:'Orbit',pan:'Pan',extents:'Extents',render:'Render',menu:'Menu'};
 const SHORT={rect:'Rect',push:'Push',extents:'Zoom'};
-const GROUPS=[['select'],['eraser'],['line','rect','circle'],['push'],['move','rotate'],['tape','text','paint'],['orbit','pan','extents']];
+const GROUPS=[['select'],['eraser'],['line','rect','circle'],['push'],['move','rotate'],['tape','text'],['paint'],['orbit','pan','extents']];
 const grpSel=GROUPS.map(g=>g[0]);
 $('#undo').innerHTML=svg('undo');$('#redo').innerHTML=svg('redo');
 function buildBar(){const top=$('#top');top.innerHTML='';const wide=innerWidth>=760;
  const mk=(t,gi)=>{const b=document.createElement('button');b.className='tb';b.dataset.t=t;b.innerHTML=svg(t)+(SHORT[t]||NAMES[t]);b.title=NAMES[t];if(gi!=null){b.classList.add('grp');b.dataset.g=gi;}top.appendChild(b);return b;};
- GROUPS.forEach((g,gi)=>{if(wide||g.length===1)g.forEach(t=>mk(t));else mk(grpSel[gi],gi);if(gi===1||gi===3||gi===5)top.insertAdjacentHTML('beforeend','<div class="sep"></div>');});
+ GROUPS.forEach((g,gi)=>{if(wide||g.length===1)g.forEach(t=>mk(t));else mk(grpSel[gi],gi);if(gi===1||gi===3||gi===6)top.insertAdjacentHTML('beforeend','<div class="sep"></div>');});
  top.insertAdjacentHTML('beforeend','<div class="sep"></div>');mk('render');mk('menu');
  top.querySelectorAll('.tb').forEach(b=>b.onclick=e=>{e.stopPropagation();const t=b.dataset.t;
   if(b.dataset.g!=null&&(tool===t||t==='extents')){openPop(+b.dataset.g,b);return;}
